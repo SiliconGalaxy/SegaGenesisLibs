@@ -12,6 +12,9 @@ START:                  ; How to use logaritmic tables
           MOVE.W #220,D1    <-Divisor
           
           MOVE.B (A0,D0.W),D0 <- We get the logs for each value
+                                 Remember that if you share any of this values,
+                                 you only need to lookup one table. That will increase even more performance
+                                 
           SUB.B  (A0,D1),D0
           BLT ZERO           <- IF LESS THAN QUOTIENT IS 0 (im not sure if this is right)
 
