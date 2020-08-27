@@ -12,6 +12,10 @@ START:
           ;perform the same operation by doing some indexing
           ;By doing this you can divide by using much less
           ;cycles than the standard div.s instruction
+          
+          ;----> Warning!!!! <----
+          ;Dont forget this method has only around 5 bit precision and it wont give a 100% accurate result
+          ;It will just provide reasonably accurate results for game development and some 3d geometry.
 
           LEA LOGT,A0       ;<-Put logaritmic table's pointer into a register
           LEA EXPT,A1       ;<-Same for exponential table
