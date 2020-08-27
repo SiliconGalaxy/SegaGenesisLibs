@@ -28,7 +28,7 @@ START:
           SUB.B  (A0,D1),D0   ;<-Substract divisor's log value 
           BLT ZERO            ;<- IF LESS THAN QUOTIENT IS 0 (im not sure if this is right)
 
-          AND.w #$ff,D0       ;<-Remove high part of word to make sure its 00 and do not affect our indexing
+          ANDI.W #$FF,D0       ;<-Remove high part of word to make sure its 00 and do not affect our indexing
           ADD.W  D0,D0        ;<-Exponential table is word based so we need to multiply by two
           
           MOVE.W (A1,D0),D2   ;<-Get Cuotient by reading our result's exponential value
