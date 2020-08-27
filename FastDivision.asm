@@ -14,6 +14,7 @@ START:
           ;cycles than the standard div.s instruction
           
           ;----> Warning!!!! <----
+          ;maximum range is 32767 be carefull.
           ;Dont forget this method has only around 5 bit precision and it wont give a 100% accurate result
           ;It will just provide reasonably accurate results for game development and some 3d geometry.
 
