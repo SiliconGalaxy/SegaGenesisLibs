@@ -23,7 +23,7 @@ START:
           MOVE.W #1322,D0   ;<-Dividend
           MOVE.W #220,D1    ;<-Divisor
           
-          MOVE.B (A0,D0.W),D0 ;<-Take dividend's log value
+          MOVE.B (A0,D0),D0 ;<-Take dividend's log value
           SUB.B  (A0,D1),D0   ;<-Substract divisor's log value 
           BLT ZERO            ;<- IF LESS THAN QUOTIENT IS 0 (im not sure if this is right)
 
