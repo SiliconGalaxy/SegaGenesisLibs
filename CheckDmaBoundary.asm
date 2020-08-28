@@ -17,49 +17,49 @@
     ORG    $1000
 START:                  ; first instruction of program
 
-        MOVE.L #DATADMA,D0    <-Move the pointer to any register
-        MOVE.L #DATAEND-DATADMA,D1    <-Put the length of the data in any register
-        BSR CHECKBOUNDARY     <-This will result in a dma boundary
+        MOVE.L #DATADMA,D0    ;<-Move the pointer to any register
+        MOVE.L #DATAEND-DATADMA,D1    ;<-Put the length of the data in any register
+        BSR CHECKBOUNDARY     ;<-This will result in a dma boundary
         
         
-        MOVE.L #DATADMA2,D0    <-Move the pointer to any register
-        MOVE.L #DATAEND2-DATADMA2,D1    <-Put the length of the data in any register
-        BSR CHECKBOUNDARY     <-This will result in a no dma boundary
+        MOVE.L #DATADMA2,D0    ;<-Move the pointer to any register
+        MOVE.L #DATAEND2-DATADMA2,D1    ;<-Put the length of the data in any register
+        BSR CHECKBOUNDARY     ;<-This will result in a no dma boundary
 
 
-INFLOOP JMP INFLOOP    <- Just an infinite loop at the program's end 
+INFLOOP JMP INFLOOP    ;<- Just an infinite loop at the program's end 
 
 
 CHECKBOUNDARY:
-        MOVE.L D0,D2             <-Lets calculate last byte pointer on d2
-        ADD.L  D1,D2             <-Add data length to pointer
-        SUBQ.L #1,D2             <-Substract 1 to point to the last byte 
+        MOVE.L D0,D2             ;<-Lets calculate last byte pointer on d2
+        ADD.L  D1,D2             ;<-Add data length to pointer
+        SUBQ.L #1,D2             ;<-Substract 1 to point to the last byte 
         
-        MOVE.L  #$FFFE0000,D3    <-Mask negative $20000 IS 128KBS
-        AND.L D3,D2              <-Mask last index
-        AND.L D3,D0              <-Mask first index
-        CMP.L D0,D2              <-Compare them
+        MOVE.L  #$FFFE0000,D3    ;<-Mask negative $20000 IS 128KBS
+        AND.L D3,D2              ;<-Mask last index
+        AND.L D3,D0              ;<-Mask first index
+        CMP.L D0,D2              ;<-Compare them
         
-        BEQ NOBOUNDARY           <-If both are equals there is no dma boundary
+        BEQ NOBOUNDARY           ;<-If both are equals there is no dma boundary
         
 BOUNDARY
-        MOVE.L D2,D0   <-PUT IN D0 WHERE 128KBDMA BOUNDARY IS GOING TO HAPPEN
+        MOVE.L D2,D0   ;<-PUT IN D0 WHERE 128KBDMA BOUNDARY IS GOING TO HAPPEN
         RTS 
         
         
 NOBOUNDARY                    
-        MOVEQ.L #0,D0  <-IF 0 NO DMA BOUNDARY IS GOING TO HAPPEN. BE HAPPY
+        MOVEQ.L #0,D0  ;<-IF 0 NO DMA BOUNDARY IS GOING TO HAPPEN. BE HAPPY
         RTS
         
 *-----------------------------------------------------------------
 *         Sample data for creating a dma boundary example
 *-----------------------------------------------------------------
         
-          ORG  $1C000  <- PLACE DATA AT 98304 
-DATADMA:  DS.B $8000   <- 49152 bytes that will generate 128kb dma boundary at $20000
+          ORG  $1C000  ;<- PLACE DATA AT 98304 
+DATADMA:  DS.B $8000   ;<- 49152 bytes that will generate 128kb dma boundary at $20000
 DATAEND:
 
-DATADMA2: DS.B $8000   <-$8000=32768 bytes. Not in the place to generate a 128kb boundary
+DATADMA2: DS.B $8000   ;<-$8000=32768 bytes. Not in the place to generate a 128kb boundary
 DATAEND2:                
 
 * Put program code here
