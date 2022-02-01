@@ -1,4 +1,4 @@
-	;Hi, nice to meet you, and welcome.
+  ;Hi, nice to meet you, and welcome.
   ;My name is George Prescott 
   ;Because i like cool retro videogames i just made this code for helping the retro videogame developing comunity.
   ;This is my best effort doing a fast division for z80 processor.
